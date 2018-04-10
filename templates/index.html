@@ -1,10 +1,48 @@
-<html>
-  <head>
-    <link href="{{ url_for('static', filename='great') }}">
-    <title>Video Streaming </title>
-  </head>
-  <body>
-    <h1>Live Video Streaming </h1>
-    <img src="{{ url_for('video_feed') }}">
-  </body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+    <div class="padd">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Marking</h3>
+                <p>One answer per question</p>
+                <p>Mark with an X</p><img src="{{ url_for('static', filename='img/show.jpg') }}"></div>
+        </div>
+    </div>
+    <div class="padd">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Print answersheet</h4>
+
+                        {% for name in names %}
+                        <div class="padd">
+                            <div class="row">
+                                <div class="col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+                                <div class="col"><img src="{{ url_for('static', filename="answersheets/" + name['image']) }}"></div>
+                                <div class="col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <a class="btn btn-light float-left" role="button" href="{{ url_for('static', filename="answersheets/" + name['pdf']) }}">PDF</a>
+                                    <a class="btn btn-light float-right" role="button" href="{{ url_for('static', filename="answersheets/" + name['image']) }}">image</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Evaluate answersheet</h4>
+                        <h5 class="text-center">Select number of questions</h5>
+                        {% for quantity in quantities %}
+                        <a class="btn btn-light btn-block btn-lg" role="button" href="{{ url_for('questions', number=quantity) }} ">{{ quantity }}</a>
+                        {% endfor %}
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

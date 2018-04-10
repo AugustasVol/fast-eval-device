@@ -6,17 +6,24 @@ app = Flask(__name__)
 vc = cv2.VideoCapture(0)
 
 @app.route("/index")
-def start_page():
+def index():
     question_q = [50,40,30,20,10]
     print(app.static_url_path)
     answersheet_names = [{"image":"q50.png", "pdf":"q50.pdf"},
-                    {"image":"q40.png", "pdf":"q40.pdf"}]
-    return render_template("start_page.html", names = answersheet_names, quantities = question_q )
+                         {"image":"q40.png", "pdf":"q40.pdf"},
+                         {"image":"q30.png", "pdf":"q30.pdf"},
+                         {"image":"q20.png", "pdf":"q20.pdf"},
+                         {"image":"q10.png", "pdf":"q10.pdf"}]
+    return render_template("index.html", names = answersheet_names, quantities = question_q )
+
+@app.route("/questions/<int:number>")
+def questions(number):
+    return str(number)
 
 @app.route('/')
-def index():
+def index1():
     """Video streaming"""
-    return render_template('index.html')
+    return render_template('index1.html')
 
 def gen():
     """Video streaming generator function."""
