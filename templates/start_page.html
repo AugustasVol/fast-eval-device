@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>fast-eval-device</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0/materia/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+
+<body>
+    <div class="padd">
+        <div class="card" style="background-image:url(&quot;{{ url_for('static', filename='img/grad_orange.png') }}&quot;);background-repeat:no-repeat;background-size:cover;">
+            <div class="card-body">
+                <h2 class="card-title" style="color:rgb(255,255,255);">fast-eval device</h2>
+                <p style="color:rgb(255,255,255);">real time test evaluation</p>
+            </div>
+        </div>
+    </div>
+    <div class="padd">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Marking</h3>
+                <p>One answer per question</p>
+                <p>Mark with an X</p><img src="{{ url_for('static', filename='img/show.jpg') }}"></div>
+        </div>
+    </div>
+    <div class="padd">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Print answersheet</h4>
+
+                        {% for name in names %}
+                        <div class="padd">
+                            <div class="row">
+                                <div class="col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+                                <div class="col"><img src="{{ url_for('static', filename="answersheets/" + name['image']) }}"></div>
+                                <div class="col-sm-1 col-md-1 col-lg-2 col-xl-3"></div>
+                                <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                    <a class="btn btn-light float-left" role="button" href="{{ url_for('static', filename="answersheets/" + name['pdf']) }}">PDF</a>
+                                    <a class="btn btn-light float-right" role="button" href="{{ url_for('static', filename="answersheets/" + name['image']) }}">image</a>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Evaluate answersheet</h4>
+                        <h5 class="text-center">Select number of questions</h5>
+                        {% for quantity in quantities %}
+                        <button class="btn btn-light btn-block btn-lg" type="button">{{ quantity }}</button>
+                        {% endfor %}
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
