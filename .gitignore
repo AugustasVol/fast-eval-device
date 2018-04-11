@@ -99,3 +99,5 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+written_test_automation/

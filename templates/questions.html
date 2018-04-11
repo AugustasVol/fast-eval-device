@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="padd">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title">Select Correct answers</h3>
+                    <form action="{{ url_for('evaluate') }}" method="post">
+                        <table class="table table-striped">
+                            <tbody>
+                                {% for i in range(1,half_number+1) %}
+                                <tr>
+                                    <td><h4>{{i}}</h4></td>
+                                    <td>
+                                        <select class="form-control-lg" name="{{i}}">
+                                            <option>None</option>
+                                            <option>A</option>
+                                            <option>B</option>
+                                            <option>C</option>
+                                            <option>D</option>
+                                            <option>E</option>
+                                        </select>
+                                    </td>
+                                    <td><h4>{{i + half_number}}</h4></td>
+                                    <td>
+                                        <select class="form-control-lg" name="{{i + half_number}}">
+                                            <option>None</option>
+                                            <option>A</option>
+                                            <option>B</option>
+                                            <option>C</option>
+                                            <option>D</option>
+                                            <option>E</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        <input class="btn btn-light btn-block btn-lg" type="submit" value="Evaluate">
+                    </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
